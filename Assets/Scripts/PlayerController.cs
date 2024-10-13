@@ -14,11 +14,17 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         playerRb = GetComponent<Rigidbody>();
-
     }
 
     // Update is called once per frame
     void Update()
+    {
+        MovePlayer();
+        ConstrainPlayer();
+    }
+
+    // Move player based on arrow key input
+    void MovePlayer()
     {
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
@@ -26,6 +32,11 @@ public class PlayerController : MonoBehaviour
         playerRb.AddForce(Vector3.right * speed * horizontalInput);
         playerRb.AddForce(Vector3.forward * speed * verticalInput);
 
+    }
+
+    // Contrain player movement at the top and bottom
+    void ConstrainPlayer()
+    {
         if (transform.position.z > zBoundTop)
         {
             transform.position = new Vector3(transform.position.x, transform.position.y, zBoundTop);
