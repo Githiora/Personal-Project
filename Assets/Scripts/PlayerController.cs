@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 
-    private float speed = 5.0f;
+    public float speed;
     private Rigidbody playerRb;
     private float zBoundTop = 6;
     private float zBoundBottom = -4.5f;
@@ -61,6 +61,7 @@ public class PlayerController : MonoBehaviour
         if (collider.gameObject.CompareTag("Powerup"))
         {
             Debug.Log("Collided with Powerup");
+            Destroy(collider.gameObject);
         }
     }
 }
